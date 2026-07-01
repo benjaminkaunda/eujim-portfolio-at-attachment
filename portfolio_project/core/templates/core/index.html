@@ -1,0 +1,785 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Kaunda | Full-Stack Developer & CS Student</title>
+    <meta name="description" content="Portfolio of Benjamin Kaunda, Computer Science student at Karatina University and aspiring Full-Stack Web Developer from Kenya.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9', // Sky blue (Tech/Trust)
+                        secondary: '#14b8a6', // Teal (Growth/Innovation)
+                        darkbg: '#0f172a', // Slate 900
+                        darkcard: '#1e293b', // Slate 800
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom scrollbar for a polished look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        
+        /* Focus states for accessibility (Inclusive Design) */
+        *:focus-visible {
+            outline: 3px solid #0ea5e9;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-darkbg dark:text-gray-200 font-sans transition-colors duration-300">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-darkbg/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="#home" class="text-2xl font-bold text-primary">B<span class="text-secondary">K</span>.</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-primary transition">About</a>
+                    <a href="#skills" class="hover:text-primary transition">Skills</a>
+                    <a href="#services" class="hover:text-primary transition">Services</a>
+                    <a href="#projects" class="hover:text-primary transition">Projects</a>
+                    <a href="#experience" class="hover:text-primary transition">Experience</a>
+                    <a href="#contact" class="hover:text-primary transition">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                        <i class="fas fa-sun text-yellow-500 hidden dark:block"></i>
+                        <i class="fas fa-moon text-gray-700 block dark:hidden"></i>
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" aria-label="Open menu" class="md:hidden p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-darkbg border-t dark:border-gray-700">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#about" class="block hover:text-primary">About</a>
+                <a href="#skills" class="block hover:text-primary">Skills</a>
+                <a href="#services" class="block hover:text-primary">Services</a>
+                <a href="#projects" class="block hover:text-primary">Projects</a>
+                <a href="#experience" class="block hover:text-primary">Experience</a>
+                <a href="#contact" class="block hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="min-h-screen flex items-center pt-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+            <div data-aos="fade-right">
+                <p class="text-primary font-semibold mb-2 tracking-wide">Hello, I'm</p>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-4">
+                    Benjamin <span class="text-primary">Kaunda</span>
+                </h1>
+                <h2 class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 font-medium mb-6">
+                    Computer Science Student | Full-Stack Web Developer | IT Professional
+                </h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-xl">
+                    I am a Computer Science student at <span class="font-semibold text-secondary">Karatina University</span> with experience in web development, database systems, and software engineering. I enjoy building practical tech solutions that solve real-world problems. 0pen to internships, and freelance opportunities to apply my academic knowledge in a professional setting.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-primary hover:bg-sky-600 text-white font-semibold rounded-lg shadow-lg shadow-primary/30 transition transform hover:-translate-y-1">
+                        View My Work
+                    </a>
+                    
+                    <!-- NEW: Download CV Button -->
+                    <a href="{% static 'core/cv/Benjamin_Kaunda_CV.pdf' %}" download class="px-6 py-3 bg-secondary hover:bg-teal-600 text-white font-semibold rounded-lg shadow-lg shadow-secondary/30 transition transform hover:-translate-y-1 flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download CV
+                    </a>
+
+                    <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition transform hover:-translate-y-1">
+                        Hire Me
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center md:justify-end" data-aos="fade-left">
+                <!-- Abstract Tech Illustration / Profile Placeholder -->
+                <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                    <div class="relative w-full h-full bg-gray-200 dark:bg-darkcard rounded-full border-4 border-white dark:border-gray-700 shadow-2xl flex items-center justify-center overflow-hidden">
+                    
+                        <!-- Replace the icon above with: <img src="{% static 'images/benjamin.jpg' %}" alt="Benjamin Kaunda" class="w-full h-full object-cover"> -->
+                         <img src="{% static 'images/benjamin.jpg' %}" alt="Benjamin Kaunda" class="w-full h-full object-cover">
+                         
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
+            <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Bridging Theory and Practice</h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                    Based in Kenya, my journey in tech is driven by a deep curiosity for how software can transform communities. At Karatina University, I don't just learn algorithms; I build systems. 
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    I specialize in the Django and Python ecosystem for robust backends, paired with modern JavaScript frameworks for dynamic frontends. I am a strong advocate for clean code, inclusive design, and continuous learning.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center space-x-2"><i class="fas fa-map-marker-alt text-primary"></i><span>Nairobi, Kenya</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-graduation-cap text-primary"></i><span>Karatina Univ.</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-briefcase text-primary"></i><span>Open to Work</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-language text-primary"></i><span>English / Swahili</span></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 text-center">
+                    <i class="fas fa-code text-4xl text-primary mb-3"></i>
+                    <h4 class="font-bold text-lg">Clean Code</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Writing maintainable, scalable software.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 text-center">
+                    <i class="fas fa-universal-access text-4xl text-secondary mb-3"></i>
+                    <h4 class="font-bold text-lg">Inclusive Design</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Building for all users, regardless of ability.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 text-center">
+                    <i class="fas fa-database text-4xl text-primary mb-3"></i>
+                    <h4 class="font-bold text-lg">Data Driven</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Efficient database architecture & management.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 text-center">
+                    <i class="fas fa-users text-4xl text-secondary mb-3"></i>
+                    <h4 class="font-bold text-lg">Team Player</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Agile methodologies & collaborative leadership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20 bg-gray-100 dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">skills</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Frontend -->
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700" data-aos="zoom-in">
+                    <div class="w-14 h-14 bg-sky-100 dark:bg-sky-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Frontend Development</h3>
+                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center"><i class="fab fa-html5 text-orange-500 mr-3"></i> HTML5 & Semantic Web</li>
+                        <li class="flex items-center"><i class="fab fa-css3-alt text-blue-500 mr-3"></i> CSS3 / Tailwind CSS</li>
+                        <li class="flex items-center"><i class="fab fa-js text-yellow-500 mr-3"></i> JavaScript (ES6+)</li>
+                        <li class="flex items-center"><i class="fab fa-react text-cyan-500 mr-3"></i> React.js (Advanced)</li>
+                    </ul>
+                </div>
+                <!-- Backend -->
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Backend & Logic</h3>
+                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center"><i class="fab fa-python text-blue-400 mr-3"></i> Python (Advanced)</li>
+                        <li class="flex items-center"><i class="fas fa-leaf text-green-700 mr-3"></i> Django & Django REST</li>
+                        <li class="flex items-center"><i class="fab fa-php text-indigo-500 mr-3"></i> PHP (Advanced)</li>
+                        <li class="flex items-center"><i class="fas fa-cogs text-gray-500 mr-3"></i> RESTful API Design</li>
+                    </ul>
+                </div>
+                <!-- Database & Tools -->
+                <div class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Databases & Tools</h3>
+                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-database text-blue-600 mr-3"></i> PostgreSQL / MySQL</li>
+                        <li class="flex items-center"><i class="fas fa-database text-green-600 mr-3"></i> MongoDB</li>
+                        <li class="flex items-center"><i class="fab fa-git-alt text-red-500 mr-3"></i> Git & GitHub</li>
+                        <li class="flex items-center"><i class="fab fa-docker text-blue-500 mr-3"></i> Docker (Learning)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Services </h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Transparent, accessible, and built with your needs in mind. I offer flexible engagement models suitable for startups, NGOs, students, and established businesses.
+                </p>
+            </div>
+    
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <article class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition focus-within:ring-2 focus-within:ring-primary" data-aos="fade-up">
+                    <div class="w-14 h-14 bg-sky-100 dark:bg-sky-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-code text-2xl text-primary" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Accessible Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                        Custom, responsive websites built with semantic HTML and WCAG guidelines. Your site will work seamlessly on all devices and for all users, including those relying on screen readers or keyboard navigation.
+                    </p>
+                    <div class="text-sm text-secondary font-medium mb-4">
+                        <i class="fas fa-check-circle mr-1" aria-hidden="true"></i> Includes: Mobile optimization, SEO basics, speed tuning
+                    </div>
+                    <a href="#contact" class="inline-flex items-center text-primary hover:text-sky-600 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1 -ml-2">
+                        Discuss Your Project <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                    </a>
+                </article>
+    
+                <!-- Service 2 -->
+                <article class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition focus-within:ring-2 focus-within:ring-primary" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-2xl text-green-600" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Backend & API Development</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                        Secure, scalable server-side solutions using Django and Python. I build robust databases, RESTful APIs, and authentication systems that grow with your business or organization.
+                    </p>
+                    <div class="text-sm text-secondary font-medium mb-4">
+                        <i class="fas fa-check-circle mr-1" aria-hidden="true"></i> Includes: Database design, API documentation, deployment support
+                    </div>
+                    <a href="#contact" class="inline-flex items-center text-primary hover:text-sky-600 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1 -ml-2">
+                        Discuss Your Project <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                    </a>
+                </article>
+    
+                <!-- Service 3 -->
+                <article class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition focus-within:ring-2 focus-within:ring-primary" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-universal-access text-2xl text-purple-600" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Accessibility & Inclusion Audits</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                        I evaluate your existing website for accessibility barriers and provide actionable, prioritized fixes. Making your digital space inclusive shouldn't be an afterthought or a luxury.
+                    </p>
+                    <div class="text-sm text-secondary font-medium mb-4">
+                        <i class="fas fa-check-circle mr-1" aria-hidden="true"></i> Includes: WCAG 2.2 compliance check, screen reader testing, clear report
+                    </div>
+                    <a href="#contact" class="inline-flex items-center text-primary hover:text-sky-600 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1 -ml-2">
+                        Discuss Your Project <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                    </a>
+                </article>
+    
+               
+            </div>
+    
+            <!-- Inclusive Pricing & Engagement Note -->
+            <div class="mt-12 p-6 bg-gray-50 dark:bg-slate-800/50 rounded-xl border border-gray-200 dark:border-gray-700" data-aos="fade-up">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <i class="fas fa-hand-holding-heart text-secondary text-xl" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Flexible & Inclusive Engagement</h4>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            I believe quality tech should be accessible to everyone. I offer <strong>student/NGO discounts</strong>, <strong>phased payment options</strong>, and <strong>sliding-scale rates</strong> for community projects. All deliverables include clear documentation, plain-language explanations, and post-launch support. Let's discuss what works for your budget and timeline.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <!-- CERTIFICATIONS SECTION -->
+    <section id="certifications" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Certifications & Training</h2>
+            <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Continuous learning is at the heart of my journey. Here are some of the programs and certifications I've completed to sharpen my skills.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Certification 1: PLP -->
+            <div class="group bg-white dark:bg-darkcard rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition" data-aos="fade-up">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center relative overflow-hidden">
+                    <i class="fas fa-certificate text-6xl text-white opacity-80"></i>
+                    <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <span class="text-white text-xs font-semibold">Software Dev</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i class="fas fa-award text-primary"></i>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">PLP Academy</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Software Development Certification</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
+                        Intensive training in modern software development practices, version control, collaborative coding, and building production-ready applications.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs rounded">javascript</span>
+                        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs rounded">Git</span>
+                        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs rounded">MySQL</span>
+                    </div>
+                    <a href="{% static 'core/certificates/plp_certificate.jpg' %}" target="_blank" class="inline-flex items-center text-primary hover:text-sky-600 font-medium text-sm transition">
+                        <i class="fas fa-file-pdf mr-2"></i> View Certificate <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certification 2: JKUAT Hackathon -->
+            <div class="group bg-white dark:bg-darkcard rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition" data-aos="fade-up" data-aos-delay="100">
+                <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center relative overflow-hidden">
+                    <i class="fas fa-trophy text-6xl text-white opacity-80"></i>
+                    <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <span class="text-white text-xs font-semibold">Hackathon</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i class="fas fa-medal text-secondary"></i>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">JKUAT</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">JKUAT Innovation Hackathon</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
+                        Participated in an intensive hackathon focused on solving real-world problems through technology. Collaborated with a team to build innovative solutions under time pressure.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded">Problem Solving</span>
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded">Teamwork</span>
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded">Innovation</span>
+                    </div>
+                    <a href="{% static 'core/certificates/jkuat_hackathon.pdf' %}" target="_blank" class="inline-flex items-center text-primary hover:text-sky-600 font-medium text-sm transition">
+                        <i class="fas fa-file-pdf mr-2"></i> View Certificate <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certification 3: Emobilis -->
+            <div class="group bg-white dark:bg-darkcard rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition" data-aos="fade-up" data-aos-delay="200">
+                <div class="h-48 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center relative overflow-hidden">
+                    <i class="fas fa-laptop-code text-6xl text-white opacity-80"></i>
+                    <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <span class="text-white text-xs font-semibold">Web Dev</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i class="fas fa-graduation-cap text-secondary"></i>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Emobilis Technology</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Web Development Certification</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
+                        Comprehensive training in modern web development, including responsive design, frontend frameworks, backend development, and database management.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded">HTML/CSS</span>
+                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded">Python</span>
+                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded">Django</span>
+                    </div>
+                    <a href="{% static 'core/certificates/emobilis_certificate.pdf' %}" target="_blank" class="inline-flex items-center text-primary hover:text-sky-600 font-medium text-sm transition">
+                        <i class="fas fa-file-pdf mr-2"></i> View Certificate <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Commitment Note -->
+        <div class="mt-12 p-6 bg-gray-50 dark:bg-slate-800/50 rounded-xl border border-gray-200 dark:border-gray-700" data-aos="fade-up">
+            <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 mt-1">
+                    <i class="fas fa-book-reader text-primary text-xl" aria-hidden="true"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Lifelong Learner</h4>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        I believe that technology evolves rapidly, and staying current is essential. I actively pursue certifications, attend workshops, and participate in hackathons to continuously grow my skills and contribute meaningfully to the tech community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured Projects</h2>
+            <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">A selection of projects that demonstrate my ability to build end-to-end solutions.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="group bg-white dark:bg-darkcard rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition" data-aos="fade-up">
+                <div class="h-48 overflow-hidden">
+                    <img src="{% static 'projects/duka.jpg' %}" alt="DukaSmart E-Commerce Platform screenshot" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition">DukaSmart E-Commerce</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">A full-stack e-commerce platform tailored for Kenyan SMEs, featuring M-Pesa integration and inventory management.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Django</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Tailwind</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">PostgreSQL</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/benjaminkaunda" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-sky-600 font-medium text-sm"><i class="fab fa-github mr-1"></i> Code</a>
+                        <a href="javascript:void(0)" onclick="openModal()" class="text-secondary hover:text-teal-600 font-medium text-sm cursor-pointer"><i class="fas fa-external-link-alt mr-1"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="group bg-white dark:bg-darkcard rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition" data-aos="fade-up" data-aos-delay="100">
+                <div class="h-48 overflow-hidden">
+                    <img src="{% static 'projects/unitrack.png' %}" alt="UniTrack Student Portal dashboard showing attendance tracking" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition">UniTrack Student Portal</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">A comprehensive student management system for tracking attendance, grades, and course registrations.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Python</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">MySQL</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Bootstrap</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/benjaminkaunda" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-sky-600 font-medium text-sm"><i class="fab fa-github mr-1"></i> Code</a>
+                        <a href="javascript:void(0)" onclick="openModal()" class="text-secondary hover:text-teal-600 font-medium text-sm cursor-pointer"><i class="fas fa-external-link-alt mr-1"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+                       
+            <div class="group bg-white dark:bg-darkcard rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition" data-aos="fade-up" data-aos-delay="200">
+                 <div class="h-48 overflow-hidden">
+                    <img src="{% static 'projects/agri.png' %}" alt="AgriConnect API documentation showing endpoints for farmer-buyer connections" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                 </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition">AgriConnect API</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">A RESTful API connecting local farmers directly to buyers, eliminating middlemen and improving profit margins.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Django REST</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">JWT Auth</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">SQLite</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/benjaminkaunda" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-sky-600 font-medium text-sm"><i class="fab fa-github mr-1"></i> Code</a>
+                        <a href="javascript:void(0)" onclick="openModal()" class="text-secondary hover:text-teal-600 font-medium text-sm cursor-pointer"><i class="fas fa-external-link-alt mr-1"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION & LEADERSHIP -->
+    <section id="experience" class="py-20 bg-gray-100 dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Education & Leadership</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center"><i class="fas fa-graduation-cap text-primary mr-3"></i> Education</h3>
+                    <div class="space-y-6 border-l-2 border-primary/30 pl-6">
+                        <div class="relative">
+                            <div class="absolute -left-[33px] w-4 h-4 bg-primary rounded-full border-4 border-gray-100 dark:border-darkbg"></div>
+                            <h4 class="font-bold text-lg">BSc. Computer Science</h4>
+                            <p class="text-primary font-medium">Karatina University, Kenya</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2022 - Present (Expected 2026)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Focus on Software Engineering, Database Systems, and Web Technologies. Maintaining a strong academic record while leading practical coding initiatives.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[33px] w-4 h-4 bg-secondary rounded-full border-4 border-gray-100 dark:border-darkbg"></div>
+                            <h4 class="font-bold text-lg">Software Development</h4>
+                            <p class="text-secondary font-medium"> PLP Academy</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Graduated 2024</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[33px] w-4 h-4 bg-secondary rounded-full border-4 border-gray-100 dark:border-darkbg"></div>
+                            <h4 class="font-bold text-lg">Web Development</h4>
+                            <p class="text-secondary font-medium">emobilis</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Graduated 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leadership -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center"><i class="fas fa-award text-secondary mr-3"></i> Leadership & Extracurricular</h3>
+                    <div class="space-y-6 border-l-2 border-secondary/30 pl-6">
+                        <div class="relative">
+                            <div class="absolute -left-[33px] w-4 h-4 bg-secondary rounded-full border-4 border-gray-100 dark:border-darkbg"></div>
+                            <h4 class="font-bold text-lg">Tech Lead / Member</h4>
+                            <p class="text-secondary font-medium">Karatina University innovation Club</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2024</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Organize weekly hackathons, mentor junior students in Python, and lead collaborative open-source projects within the university.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[33px] w-4 h-4 bg-primary rounded-full border-4 border-gray-100 dark:border-darkbg"></div>
+                            <h4 class="font-bold text-lg">Hackathons leader</h4>
+                            <p class="text-primary font-medium">Karatina University</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">2024</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Lead a team of 10 students in organizing and participating in hackathons, ensuring an inclusive and supportive learning environment for all peers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Let's Build Something Together</h2>
+            <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">I am currently open to internships, and freelance opportunities. Feel free to reach out!</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Contact Info -->
+            <div data-aos="fade-right">
+                <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
+                <div class="space-y-6">
+                    <a href="mailto:benjaminkaund095a@gmail.com" class="flex items-center space-x-4 p-4 bg-white dark:bg-darkcard rounded-xl shadow hover:shadow-lg transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-envelope text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-medium">benjaminkaunda095@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="tel:+254726798569" class="flex items-center space-x-4 p-4 bg-white dark:bg-darkcard rounded-xl shadow hover:shadow-lg transition border border-gray-100 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-phone text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Phone</p>
+                            <p class="font-medium">+254 726798569</p>
+                        </div>
+                    </a>
+                    
+                    <div class="flex space-x-4 pt-4">
+                        <a href="https://github.com/benjaminkaunda" target="blank" aria-label="GitHub" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/benjamin-kaunda-8542a028b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://x.com/KaundaBenj66231?t=x4ovOjm6oHqc6jFMz0_erQ&s=09" target="_blank" aria-label="Twitter" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-sky-500 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div data-aos="fade-left">
+                <form method="POST" action="{% url 'contact_submit' %}" class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="mb-4 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% else %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class="mb-6">
+                        <label for="id_name" class="block text-sm font-medium mb-2">Full Name</label>
+                        <input type="text" id="id_name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                    </div>
+                    <div class="mb-6">
+                        <label for="id_email" class="block text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" id="id_email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                    </div>
+                    <div class="mb-6">
+                        <label for="id_message" class="block text-sm font-medium mb-2">Your Message</label>
+                        <textarea id="id_message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-primary hover:bg-sky-600 text-white font-semibold rounded-lg shadow-lg shadow-primary/30 transition transform hover:-translate-y-1">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Coming Soon Modal -->
+<div id="coming-soon-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="bg-white dark:bg-darkcard rounded-2xl shadow-2xl max-w-md mx-4 p-8 relative transform transition-all">
+        <!-- Close Button -->
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition" aria-label="Close modal">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+        
+        <!-- Modal Content -->
+        <div class="text-center">
+            <div class="w-20 h-20 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-rocket text-4xl text-primary"></i>
+            </div>
+            <h3 id="modal-title" class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Coming Soon!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                We're crafting something special for you. The live demo is currently in development and will be available soon.
+            </p>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">
+                Thank you for your interest and patience! In the meantime, feel free to explore the source code or reach out with any questions.
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="#contact" onclick="closeModal()" class="px-6 py-3 bg-primary hover:bg-sky-600 text-white font-semibold rounded-lg transition">
+                    <i class="fas fa-envelope mr-2"></i> Get in Touch
+                </a>
+                <button onclick="closeModal()" class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-primary hover:text-primary font-semibold rounded-lg transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">&copy; {% now "Y" %} Benjamin Kaunda. Crafted with <i class="fas fa-heart text-red-500"></i> in Kenya.</p>
+            <p class="text-sm">Built with Django, Tailwind CSS, and a commitment to inclusive design.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = themeToggleBtn.querySelector('.fa-sun');
+        const themeToggleLightIcon = themeToggleBtn.querySelector('.fa-moon');
+
+        // Check for saved theme preference or default to 'light'
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Update icons on load based on current theme
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleDarkIcon.classList.remove('hidden');
+            themeToggleLightIcon.classList.add('hidden');
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        // Modal Functions
+function openModal() {
+    const modal = document.getElementById('coming-soon-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Focus trap for accessibility
+    const closeButton = modal.querySelector('button');
+    if (closeButton) closeButton.focus();
+}
+
+function closeModal() {
+    const modal = document.getElementById('coming-soon-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Close modal when clicking outside
+document.getElementById('coming-soon-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+    </script>
+</body>
+</html>
